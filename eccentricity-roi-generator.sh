@@ -8,7 +8,7 @@ set -e
 mkdir -p ./rois ./rois/rois ./raw
 
 # parse inputs
-prfSurfacesDir=`jq -r '.prfSurfacesDir' config.json`
+prfSurfacesDir=`jq -r '.prf_surfaces' config.json`
 minDegree=`jq -r '.min_degree' config.json` # min degree for binning of eccentricity
 maxDegree=`jq -r '.max_degree' config.json` # max degree for binning of eccentricity
 freesurfer=`jq -r '.freesurfer' config.json`
