@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # output lines to log files and fail if error
-# set -x
-# set -e
+set -x
+set -e
 
 # make directories
 mkdir -p ./rois ./rois/rois ./raw
@@ -27,7 +27,7 @@ do
 		hemi_out="R"
 	fi
 
-	if [[ ${reslice} == "True" ]]; then
+	if [[ ${reslice} == "true" ]]; then
 		# move freesurfer hemisphere ribbon into input nifti space
 		input_nii_gz=`jq -r '.input_nifti' config.json`
 		[ ! -f ${hemi}.ribbon.nii.gz ] && mri_vol2vol --mov $freesurfer/mri/${hemi}.ribbon.mgz --targ ${input_nii_gz} --regheader --o ${hemi}.ribbon.nii.gz
@@ -46,7 +46,7 @@ do
 		SUBJECTS_DIR=${freesurfer}
 		[ ! -f ROI${hemi}.Ecc${minDegree[$DEG]}to${maxDegree[$DEG]}.nii.gz ] && mri_surf2vol --o ./ROI${hemi}.Ecc${minDegree[$DEG]}to${maxDegree[$DEG]}.nii.gz --subject ./ --so ${freesurfer}/surf/${hemi}.pial ./${hemi}.Ecc${minDegree[$DEG]}to${maxDegree[$DEG]}.func.gii
 
-		if [[ ${reslice} == "True" ]]; then
+		if [[ ${reslice} == "true" ]]; then
 			mri_vol2vol --mov ROI${hemi}.Ecc${minDegree[$DEG]}to${maxDegree[$DEG]}.nii.gz --targ ${input_nii_gz} --regheader --o ROI${hemi}.Ecc${minDegree[$DEG]}to${maxDegree[$DEG]}.nii.gz --nearest
 		fi
 	done
