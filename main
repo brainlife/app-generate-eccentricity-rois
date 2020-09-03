@@ -1,6 +1,6 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=8,vmem=32gb,walltime=00:30:00
-#PBS -N app-trekker-roi-tracking
+#PBS -l nodes=1:ppn=4,vmem=16gb,walltime=00:30:00
+#PBS -N app-generate-eccentricity-rois
 
 # loading a lot of config information purely to better inform if statements on when to run
 minDegree=`jq -r '.min_degree' config.json`
